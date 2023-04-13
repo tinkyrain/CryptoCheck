@@ -1,0 +1,28 @@
+.Paper{
+    background-color: #353537;
+    width: 700px;
+    height: 150px;
+
+    border-radius: 15px;
+
+    font-family: 'Montserrat', sans-serif;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.Logo{
+    width: 90px;
+    height: 90px;
+}
+
+.cryptoName{
+    color: white;
+    font-size: 35px;
+}
+
+.cryptoChnage{
+    color: white;
+    font-size: 35px;
+}
