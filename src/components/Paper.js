@@ -1,11 +1,11 @@
 import './Paper.css';
 
-const Paper = ({ logo, name, change }) => {
+const Paper = ({ info }) => {
     return(
         <div className='Paper'>
-            <img src={logo} className='Logo' alt='Logo'/>
-            <span className='cryptoName'>{name}</span>
-            <span className='cryptoChnage'>{change}</span>
+            <img src={info.logo} className='Logo' alt='Logo'/>
+            <span className='cryptoName'>{info.name}</span>
+            <span className='cryptoChnage'>{info.price}</span>
         </div>
     );
 }
