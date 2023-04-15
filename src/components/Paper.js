@@ -6,7 +6,9 @@ const Paper = ({ img, name, price }) => {
         <div className='Paper'>
             <img src={img} className='Logo' alt='Logo'/>
             <span className='cryptoName'>{name}</span>
-            <span className='cryptoChnage'> {price} $</span>
+            <span className='cryptoChnage'> 
+                {price} $
+            </span>
         </div>
     );
 }

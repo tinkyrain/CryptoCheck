@@ -16,17 +16,13 @@ let defaultState = {
 
 const reducer = (state = defaultState, action) => {
   switch(action.type){
-    case 'ADD_PRICE_BITCOIN':
-      return {...state, Bitcoin: state.Bitcoin = action.priceChange}
-
-    case 'ADD_PRICE_CARDANO':
-      return {...state, Cardano: state.Cardano = action.priceChange}
-
-    case 'ADD_PRICE_DOGECOIN':
-      return {...state, Dogecoin: state.Dogecoin = action.priceChange}
-
-    case 'ADD_PRICE_ETHEREUM':
-      return {...state, Ethereum: state.Ethereum = action.priceChange}
+    case 'ADD_PRICE':
+      return {...state, 
+              Bitcoin: state.Bitcoin = action.priceBTC, 
+              Cardano: state.Cardano = action.priceCAR,
+              Dogecoin: state.Dogecoin = action.priceDOGE,
+              Ethereum: state.Ethereum = action.priceETH
+      }
 
     default:
       return state;
@@ -38,9 +34,9 @@ const store = createStore(reducer);
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-  <Provider store={store}>
-    <App />
-  </Provider>
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>
 );
 

@@ -5,17 +5,17 @@ import Paper from './components/Paper'
 const API = 'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin%2Ctether%2Cethereum%2Clitecoin%2Ccardano%2Cdogecoin&vs_currencies=usd&include_24hr_change=true';
 
 function App() {
-
   const dispatch = useDispatch();
 
   fetch(`${API}`)
   .then(response => response.json())
   .then(data => {
-    console.log(data);
-    dispatch({type: 'ADD_PRICE_BITCOIN', priceChange: data.bitcoin.usd});
-    dispatch({type: 'ADD_PRICE_CARDANO', priceChange: data.cardano.usd});
-    dispatch({type: 'ADD_PRICE_DOGECOIN', priceChange: data.dogecoin.usd});
-    dispatch({type: 'ADD_PRICE_ETHEREUM', priceChange: data.ethereum.usd});
+    dispatch({type: 'ADD_PRICE', 
+              priceBTC: data.bitcoin.usd, 
+              priceCAR: data.cardano.usd,
+              priceDOGE: data.dogecoin.usd,
+              priceETH: data.ethereum.usd
+    });
   })
 
   return (
