@@ -1,53 +1,29 @@
+import { useDispatch, useSelector } from 'react-redux';
 import './App.css'
-import Paper from "./components/Paper";
+import Paper from './components/Paper'
 
-let value = [
-  {
-    name: null,
-    logo: '/IMG/Bitcoin.png',
-    price: null
-  },
-
-  {
-    name: null,
-    logo: `/IMG/Ethereum.png`,
-    price: null
-  },
-
-  {
-    name: null,
-    logo: `/IMG/Tether.png`,
-    price: null
-  },
-
-  {
-    name: null,
-    logo: `/IMG/BNB.png`,
-    price: null
-  }
-];
-
-const KEY = '0d88e84e5022de8205f632f461d1452984c55de7e854a135fa7a389eec92';
-const API = `https://api.cryptorank.io/v1/currencies?api_key=${KEY}`;
-
-const getData = async () => {
-  const get_url = await fetch(`${API}`);
-  const data = await get_url.json();
-  for(let i = 0; i < 4; i++){
-    value[i].name = data.data[i].name;  
-    value[i].price = data.data[i].values.USD.price.toFixed(3);
-  }
-}
-
-getData();
+const API = 'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin%2Ctether%2Cethereum%2Clitecoin%2Ccardano%2Cdogecoin&vs_currencies=usd&include_24hr_change=true';
 
 function App() {
+  const dispatch = useDispatch();
+
+  fetch(`${API}`)
+  .then(response => response.json())
+  .then(data => {
+    dispatch({type: 'ADD_PRICE', 
+              priceBTC: data.bitcoin.usd, 
+              priceCAR: data.cardano.usd,
+              priceDOGE: data.dogecoin.usd,
+              priceETH: data.ethereum.usd
+    });
+  })
+
   return (
     <main>
-      <Paper info={value[0]}/>
-      <Paper info={value[1]}/>
-      <Paper info={value[2]}/>
-      <Paper info={value[3]}/>
+      <Paper img={'/IMG/Bitcoin.png'} name={'Bitcoin'} price={useSelector(state => state.Bitcoin)}/>
+      <Paper img={'/IMG/Cardano.png'} name={'Cardano'} price={useSelector(state => state.Cardano)}/>
+      <Paper img={'/IMG/Dogecoin.png'} name={'Dogecoin'} price={useSelector(state => state.Dogecoin)}/>
+      <Paper img={'/IMG/Ethereum.png'} name={'Ethereum'} price={useSelector(state => state.Ethereum)}/>
     </main>
   );
 }
