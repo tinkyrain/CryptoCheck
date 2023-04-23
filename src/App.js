@@ -8,7 +8,13 @@ function App() {
   const dispatch = useDispatch();
 
   fetch(`${API}`)
-  .then(response => response.json())
+  .then(response => {
+    if(response.ok){
+      return response.json();
+    } else {
+      alert('An error has occurred! Try later...');
+    }
+  })
   .then(data => {
     dispatch({type: 'ADD_PRICE', 
               priceBTC: data.bitcoin.usd, 
