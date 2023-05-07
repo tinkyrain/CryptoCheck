@@ -3,6 +3,8 @@
     width: 700px;
     height: 150px;
 
+    margin: 15px;
+
     border-radius: 15px;
 
     font-family: 'Montserrat', sans-serif;
@@ -25,4 +27,62 @@
 .cryptoChnage{
     color: white;
     font-size: 35px;
+}
+
+@media (max-width: 730px) {
+    .Paper{
+        width: 550px;
+        height: 150px;
+    }
+}
+
+@media (max-width: 590px) {
+    .Paper{
+        width: 480px;
+        height: 150px;
+    }
+
+    .Logo{
+        width: 60px;
+        height: 60px;
+    }
+
+    .cryptoName{
+        color: white;
+        font-size: 25px;
+    }
+    
+    .cryptoChnage{
+        color: white;
+        font-size: 25px;
+    }
+}
+
+@media (max-width: 490px) {
+    .Paper{
+        width: 350px;
+        height: 150px;
+    }
+}
+
+@media (max-width: 370px) {
+    .Paper{
+        width: 290px;
+        height: 100px;
+    }
+
+    .Logo{
+        width: 40px;
+        height: 40px;
+    }
+
+    .cryptoName{
+        color: white;
+        font-size: 20px;
+    }
+    
+    .cryptoChnage{
+        color: white;
+        font-size: 20px;
+    }
 }
