@@ -1,4 +1,4 @@
-.Paper{
+.paper{
     background-color: #353537;
     width: 700px;
     height: 150px;
@@ -14,11 +14,6 @@
     justify-content: space-evenly;
 }
 
-.Logo{
-    width: 90px;
-    height: 90px;
-}
-
 .cryptoName{
     color: white;
     font-size: 35px;
@@ -30,21 +25,16 @@
 }
 
 @media (max-width: 730px) {
-    .Paper{
+    .paper{
         width: 550px;
         height: 150px;
     }
 }
 
 @media (max-width: 590px) {
-    .Paper{
+    .paper{
         width: 480px;
         height: 150px;
-    }
-
-    .Logo{
-        width: 60px;
-        height: 60px;
     }
 
     .cryptoName{
@@ -59,21 +49,16 @@
 }
 
 @media (max-width: 490px) {
-    .Paper{
+    .paper{
         width: 350px;
         height: 150px;
     }
 }
 
 @media (max-width: 370px) {
-    .Paper{
+    .paper{
         width: 290px;
         height: 100px;
-    }
-
-    .Logo{
-        width: 40px;
-        height: 40px;
     }
 
     .cryptoName{

@@ -1,0 +1,10 @@
+.error {
+    width: auto;
+    height: auto;
+}
+
+.errorText {
+    color: red;
+    font-size: 30px;
+    font-family: 'Montserrat', sans-serif;
+}

@@ -1,13 +1,11 @@
-import { useSelector } from 'react-redux';
 import './Paper.css';
 
-const Paper = ({ img, name, price }) => {
+const Paper = ({ data }) => {
     return(
-        <div className='Paper'>
-            <img src={img} className='Logo' alt='Logo'/>
-            <span className='cryptoName'>{name}</span>
+        <div className='paper'>
+            <span className='cryptoName'>{data.name}</span>
             <span className='cryptoChnage'> 
-                {price} $
+                {data.price_usd} $
             </span>
         </div>
     );
