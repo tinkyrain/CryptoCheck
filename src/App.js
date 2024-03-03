@@ -1,36 +1,48 @@
-import { useDispatch, useSelector } from 'react-redux';
-import './App.css'
-import Paper from './components/Paper'
+import Paper from './components/Paper';
+import Error from './components/Error';
+import Loader from './components/Loader'
 
-const API = 'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin%2Ctether%2Cethereum%2Clitecoin%2Ccardano%2Cdogecoin&vs_currencies=usd&include_24hr_change=true';
+import { useEffect, useState } from 'react';
+
+const API = 'https://api.coinlore.net/api/tickers/?limit=4';
 
 function App() {
-  const dispatch = useDispatch();
 
-  fetch(`${API}`)
-  .then(response => {
-    if(response.ok){
-      return response.json();
-    } else {
-      alert('An error has occurred! Try later...');
-    }
-  })
-  .then(data => {
-    dispatch({type: 'ADD_PRICE', 
-              priceBTC: data.bitcoin.usd, 
-              priceCAR: data.cardano.usd,
-              priceDOGE: data.dogecoin.usd,
-              priceETH: data.ethereum.usd
-    });
-  })
+  const [error, setError] = useState(null); //Стейт с ошибками
+  const [isLoaded, setLoaded] = useState(false); //Стейт загрузки
+  const [response, setResponse] = useState([]); //Стейт данных
 
+  //При загрузке страницы делаем запрос
+  useEffect(() => {
+    fetch(`${API}`)
+      .then(result => result.json())
+      .then((result) => {
+        setLoaded(true);
+        setResponse(result);
+      },
+      (error) => {
+        setLoaded(true);
+        setError(true);
+      })
+  }, []);
+
+  //Если есть ошибки, то подргружаем компонент ошибки
+  if(error){
+    return <Error/>
+  }
+  
+  //При загрузке грузим компонент загрузки
+  if(!isLoaded) {
+    return <Loader/>
+  }
+  
+  //Если всё прошло удачно, то грузим элементы
   return (
-    <main>
-      <Paper img={'/IMG/Bitcoin.png'} name={'Bitcoin'} price={useSelector(state => state.Bitcoin)}/>
-      <Paper img={'/IMG/Cardano.png'} name={'Cardano'} price={useSelector(state => state.Cardano)}/>
-      <Paper img={'/IMG/Dogecoin.png'} name={'Dogecoin'} price={useSelector(state => state.Dogecoin)}/>
-      <Paper img={'/IMG/Ethereum.png'} name={'Ethereum'} price={useSelector(state => state.Ethereum)}/>
-    </main>
+    <>
+      {response.data.map(item => (
+        <Paper data={item}/>
+      ))}
+    </>
   );
 }
 
