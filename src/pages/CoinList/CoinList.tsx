@@ -2,12 +2,17 @@ import { Button, Stack } from "@chakra-ui/react";
 import { observer } from "mobx-react-lite";
 import { useEffect } from "react";
 
+import FullScreenLoader from "../../components/loaders/FullScreenLoader/FullScreenLoader";
 import ValuteCard from "../../components/cards/ValuteCard/ValuteCard";
+
 import coinsStore from "../../stores/coins-store";
-import { TCoinListStat } from "../../types/types";
+import {TCoinList, TCoinListStat} from "../../types/types";
+
+import {Link} from "react-router-dom";
 
 import './CoinList.css';
-import FullScreenLoader from "../../components/loaders/FullScreenLoader/FullScreenLoader";
+
+
 
 const CoinList = observer((): JSX.Element => {
 
@@ -27,7 +32,7 @@ const CoinList = observer((): JSX.Element => {
                 spacing={5}
                 pt={5}
             >
-                {dataListCoins.map((el) => {
+                {dataListCoins.map((el: TCoinList) => {
                     const valuteStats: TCoinListStat[] = [
                         {
                             statLabel: 'On hour:',
@@ -50,18 +55,23 @@ const CoinList = observer((): JSX.Element => {
                     ];
 
                     return (
-                        <ValuteCard
-                            valuteName={el.name}
-                            valuteLabel="Price"
-                            valutePrice={el.price_usd}
-                            valuteUnit="$"
-                            valuteStats={valuteStats}
+                        <Link
+                            to={`/coin/${el.id}`}
                             key={el.id}
-                        />
+                            className='coin-list__link'
+                        >
+                            <ValuteCard
+                                valuteName={el.name}
+                                valuteLabel="Price"
+                                valutePrice={el.price_usd}
+                                valuteUnit="$"
+                                valuteStats={valuteStats}
+                            />
+                        </Link>
                     )
                 })}
                 {/* Убираем кнопку, если идёт загрузка */}
-                { !isLoading ? <Button colorScheme='blue' mb={5} onClick={() => getCoinsListAction(start, limit)}>Load more</Button> : null}
+                {!isLoading ? <Button colorScheme='blue' mb={5} onClick={() => getCoinsListAction(start, limit)}>Load more</Button> : null}
             </Stack>
         </>
     );

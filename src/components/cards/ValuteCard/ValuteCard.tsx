@@ -8,17 +8,23 @@ import {
 import ValuteStatGroup from "../../stats/ValuteStatGroup/ValuteStatGroup";
 import ValutePrice from "../../stats/ValutePrice/ValutePrice";
 import './ValuteCard.css';
-import { TCoinListStat } from "../../../types/types";
+import {TCoinListStat} from "../../../types/types";
 
 type TProps = {
     valuteName: string,
     valutePrice: string,
     valuteUnit: string,
     valuteLabel: string,
-    valuteStats: TCoinListStat[]
+    valuteStats: TCoinListStat[],
 };
 
-const ValuteCard = ({valuteName, valutePrice, valuteUnit, valuteLabel, valuteStats}: TProps): JSX.Element => {
+const ValuteCard = ({
+                        valuteName,
+                        valutePrice,
+                        valuteUnit,
+                        valuteLabel,
+                        valuteStats,
+                    }: TProps): JSX.Element => {
     return (
         <>
             <Card className="card" size='lg'>

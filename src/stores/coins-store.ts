@@ -1,9 +1,10 @@
 import { makeAutoObservable, runInAction } from "mobx";
-import { TCoinList, TCoinListResponse } from "../types/types";
-import { getCoinsList } from "../api/coins/coins-data";
+import {TCoinData, TCoinList, TCoinListResponse} from "../types/types";
+import {getCoinData, getCoinsList} from "../api/coins/coins-data";
 
 class CoinsStore {
     dataListCoins: TCoinList[] = [];
+    dataCoin: TCoinData[] = [];
 
     start: number = 0;
     limit: number = 50;
@@ -28,6 +29,23 @@ class CoinsStore {
                 //Заполняем стейт
                 this.dataListCoins.push(...res.data);
             });
+
+            this.isLoading = false;
+        } catch {
+            this.isLoading = false;
+        }
+    }
+
+    //Получаем определённую валюту
+    getCoinData = async (id: number) => {
+        try {
+            this.isLoading = true;
+
+            const res: TCoinData = await getCoinData(id);
+
+            runInAction(() => {
+                this.dataCoin = res;
+            })
 
             this.isLoading = false;
         } catch {

@@ -1,0 +1,31 @@
+.coin-info__card {
+    width: 100%;
+    margin: 30px auto;
+}
+
+.coin-info-card__card-body {
+    -webkit-flex: none !important;
+    flex: none !important;
+}
+
+.coin-info__text {
+    font-size: 1.5vw;
+}
+
+/*@media (max-width: 375px) {*/
+/*    .coin-info__text {*/
+/*        font-size: 20px !important*/
+/*    }*/
+/*}*/
+
+@media (max-width: 1335px) {
+    .coin-info__text {
+        font-size:  2.5vw;
+    }
+}
+
+@media (max-width: 680px) {
+    .coin-info__text {
+        font-size:  4vw;
+    }
+}
